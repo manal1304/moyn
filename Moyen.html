@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calcul Moyenne Master SII</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f7fb;
+  margin:0;
+  padding:20px;
+}
+.header-card{
+  width:100%;
+  background:#fff1f1;;
+  color:#000000;
+  padding:25px 20px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.header-card h1{
+  margin:0;
+  font-size:34px;
+  font-weight:700;
+}
+
+.header-card h2{
+  margin:6px 0 0;
+  font-size:20px;
+  font-weight:400;
+  opacity:0.95;
+}
+
+
+.container{
+  display:flex;
+  flex-direction: column; /* S1 فوق S2 */
+  gap:30px;
+}
+
+.semestre{
+  background:#fff;
+  width:100%;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+
+.module{
+  border:1px solid #e0e6f0;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+}
+.module h4{
+  margin:0 0 6px 0;
+}
+.inputs{
+  display:flex;
+  gap:10px;
+}
+input{
+  width:33%;
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+input[disabled]{
+  background:#eef3ff;
+  font-weight:bold;
+  text-align:center;
+}
+.moy-module{
+  background:#eef4ff;
+  font-weight:bold;
+  border:1px solid #b7c9ff;
+}
+
+.moy-module.fail{
+  color:#d60000;
+}
+
+.moy-module.pass{
+  color:#008000;
+}
+
+.fail{
+  color:#d60000;
+}
+.pass{
+  color:#008000;
+}
+
+.result{
+  margin-top:6px;
+  font-weight:bold;
+}
+.moyenne{
+  background:#fff1f1;
+  padding:14px;
+  border-radius:10px;
+  font-size:20px;
+  font-weight:bold;
+  margin-top:15px;
+}
+.annuelle{
+  margin-top:30px;
+  background:#e8f5ff;
+  padding:20px;
+  border-radius:14px;
+  font-size:26px;
+  font-weight:bold;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+    <div class="header-card">
+  <h1>Calcul de Moyenne</h1>
+  <h2>Master 1 – Spécialité ISII</h2>
+</div>
+
+
+<div class="container">
+
+<!-- ================= S1 ================= -->
+<div class="semestre" id="s1">
+<h2>Semestre 1 (S1)</h2>
+
+<div class="module" data-coeff="3">
+<h4>Architecture Logicielle (Coef 3)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Réseaux Avancés (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="3">
+<h4>IA : Apprentissage Automatique (Coef 3)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Analyse Statistique des Données (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Multimédia (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Optimisation Combinatoire (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="1">
+<h4>Systèmes d’Aide à la Décision (Coef 1)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Méthodologies de Sécurité (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Introduction au Traitement d’Images (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="moyenne">Moyenne S1 : <span id="moyS1">0</span> /20</div>
+</div>
+
+<!-- ================= S2 ================= -->
+<div class="semestre" id="s2">
+<h2>Semestre 2 (S2)</h2>
+
+<div class="module" data-coeff="3">
+<h4>Architecture Web J2EE (Coef 3)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="3">
+<h4>Bases de Données Avancées (Coef 3)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="3">
+<h4>Data Mining (Coef 3)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Entrepôt de Données (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Cryptographie (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>MEPS (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="2">
+<h4>Vision par Ordinateur (Coef 2)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="1">
+<h4>Culture d’Entreprise (Coef 1)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="module" data-coeff="1" data-lang="1">
+<h4>Anglais (Coef 1)</h4>
+<div class="inputs">
+  <input placeholder="TD">
+  <input placeholder="Examen">
+  <input placeholder="Moyenne" disabled>
+</div>
+
+
+</div>
+
+<div class="moyenne">Moyenne S2 : <span id="moyS2">0</span> /20</div>
+</div>
+
+</div>
+
+<div class="annuelle">
+Moyenne Annuelle : <span id="moyAnn">0</span> /20
+</div>
+
+<script>
+function normalizeInput(input){
+  let v = parseFloat(input.value);
+  if (isNaN(v)) {
+    input.value = "";
+    return;
+  }
+  if (v > 20) input.value = 20;
+  if (v < 0) input.value = 0;
+}
+
+function calcSem(id, out){
+  let modules = document.querySelectorAll("#"+id+" .module");
+  let total = 0;
+  let coefTotal = 0;
+
+  modules.forEach((m, index)=>{
+    let coef = parseInt(m.dataset.coeff);
+    let inputs = m.querySelectorAll("input");
+    let note = 0;
+
+    // ضبط القيم
+    inputs.forEach(i=>{
+      if(!i.readOnly) normalizeInput(i);
+    });
+
+    if(m.dataset.lang){
+      note = parseFloat(inputs[0].value || 0);
+    } else {
+      let td = parseFloat(inputs[0].value || 0);
+      let exam = parseFloat(inputs[1].value || 0);
+      note = td * 0.4 + exam * 0.6;
+    }
+
+    // 🔹 وضع معدل الموديل في الخانة الثالثة
+    let moyInput = inputs[inputs.length - 1];
+    moyInput.value = note.toFixed(2);
+    moyInput.className =
+      "moy-module " + (note < 10 ? "fail" : "pass");
+
+    total += note * coef;
+    coefTotal += coef;
+  });
+
+  let moyenne = coefTotal ? (total / coefTotal).toFixed(2) : "0.00";
+  let outEl = document.getElementById(out);
+  outEl.innerText = moyenne;
+  outEl.className = (moyenne < 10 ? "fail" : "pass");
+
+  return parseFloat(moyenne);
+}
+
+// 🔁 إعادة الحساب + حفظ تلقائي
+document.addEventListener("input", ()=>{
+  let s1 = calcSem("s1", "moyS1");
+  let s2 = calcSem("s2", "moyS2");
+
+  document.getElementById("moyAnn").innerText =
+    ((s1 + s2) / 2).toFixed(2);
+
+  let values = [];
+  document.querySelectorAll("input").forEach(i=>{
+    values.push(i.value);
+  });
+  localStorage.setItem("notes_master", JSON.stringify(values));
+});
+
+// 📂 استرجاع البيانات بعد فتح الصفحة
+window.onload = ()=>{
+  let saved = JSON.parse(localStorage.getItem("notes_master") || "[]");
+  document.querySelectorAll("input").forEach((i, idx)=>{
+    if(saved[idx] !== undefined){
+      i.value = saved[idx];
+    }
+  });
+  document.dispatchEvent(new Event("input"));
+};
+</script>
+
+
+</body>
+</html>
+
